@@ -15,10 +15,4 @@ public class ListNode {
         val = new int[]{x, x, x, y};
         next = n;
     }
-
-    ListNode(int x, int y, ListNode n, ListNode p){
-        val = new int[]{x, x, x, y};
-        next = n;
-        prev = p;
-    }
 }
