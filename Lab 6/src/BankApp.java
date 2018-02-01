@@ -34,15 +34,13 @@ public class BankApp {
                         System.err.println("Invalid command: " + command);
                         usage();
                     }
+                    command = bankApp.readLine("--> ");
                 } catch (IOException e) {
                     System.err.println(e);
                 } catch (BadAccountException e1) {
                     System.err.println(e1);
                 } catch (BadTransactionException e2) {
                     System.err.println(e2);
-                }
-                finally {
-                    command = bankApp.readLine("--> ");
                 }
             }
         } catch (IOException e) {
