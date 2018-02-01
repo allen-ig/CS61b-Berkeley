@@ -82,9 +82,7 @@ public class DList {
      *  Performance:  runs in O(1) time.
      */
     public void insertFront(Object item) {
-        DListNode insert = new DListNode(item);
-        insert.prev = head;
-        insert.next = head.next;
+        DListNode insert = newNode(item, head, head.next);
         head.next.prev = insert;
         head.next = insert;
         size++;
@@ -97,9 +95,7 @@ public class DList {
      *  Performance:  runs in O(1) time.
      */
     public void insertBack(Object item) {
-        DListNode insert = new DListNode(item);
-        insert.prev = head.prev;
-        insert.next = head;
+        DListNode insert = newNode(item, head.prev, head);
         head.prev.next = insert;
         head.prev = insert;
         size++;
@@ -177,9 +173,7 @@ public class DList {
      */
     public void insertAfter(Object item, DListNode node) {
         if (node == null) return;
-        DListNode insert = new DListNode(item);
-        insert.next = node.next;
-        insert.prev = node;
+        DListNode insert = newNode(item, node, node.next);
         node.next.prev = insert;
         node.next = insert;
         size++;
@@ -195,9 +189,7 @@ public class DList {
      */
     public void insertBefore(Object item, DListNode node) {
         if (node == null) return;
-        DListNode insert = new DListNode(item);
-        insert.prev = node.prev;
-        insert.next = node;
+        DListNode insert = newNode(item, node.prev, node);
         node.prev.next = insert;
         node.prev = insert;
         size++;
