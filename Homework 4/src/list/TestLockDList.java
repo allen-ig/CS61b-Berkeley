@@ -119,7 +119,7 @@ public class TestLockDList {
                 "insertFront after insertBack failed");
     }
     private static void newtest(LockDList sl1) {
-        LockDListNode node = sl1.front();
+        DListNode node = sl1.front();
         System.out.println();
         System.out.println("front() should be 3. It is: " +
                 sl1.front().item);
@@ -132,7 +132,7 @@ public class TestLockDList {
         sl1.remove(node);
         System.out.println("After remove the locked front, the front() should still be 3. It is: " +
                 sl1.front().item);
-        LockDListNode back = sl1.back();
+        DListNode back = sl1.back();
         sl1.remove(back);
         System.out.println("After remove the back, the back() should be 12. It is: " +
                 sl1.back().item);
