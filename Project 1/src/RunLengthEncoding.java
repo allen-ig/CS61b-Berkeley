@@ -213,11 +213,12 @@ public class RunLengthEncoding implements Iterable {
                     cur.val[3] += 1;
                 }else{
                     cur.next = new ListNode(red, green, blue, 1);
+                    size += cur.val[3];
                     cur = cur.next;
-                    size++;
                 }
             }
         }
+        size += cur.val[3];
         tail = cur;
         check();
     }
@@ -231,10 +232,10 @@ public class RunLengthEncoding implements Iterable {
         if (this.size < 1) {
             System.out.println("error: run cannot be null");
         }
-        int sum = 0;
+        int sum = head.val[3];
         ListNode cur = head;
         while(cur.next != null){
-            sum += cur.val[3];
+            sum += cur.next.val[3];
             if (cur.val[0] == cur.next.val[0] && cur.val[1] == cur.next.val[1] && cur.val[2] == cur.next.val[2]){
                 System.out.println("error: same consecutive runs");
             }
@@ -411,22 +412,16 @@ public class RunLengthEncoding implements Iterable {
         RunLengthEncoding rle1 = new RunLengthEncoding(image1);
         rle1.check();
         System.out.println("Testing getWidth/getHeight on a 3x3 encoding.");
-        System.out.println(rle1.getWidth());
-        System.out.println(rle1.getHeight());
         doTest(rle1.getWidth() == 3 && rle1.getHeight() == 3,
                 "RLE1 has wrong dimensions");
 
         System.out.println("Testing toPixImage() on a 3x3 encoding.");
-        System.out.println(image1);
-        System.out.println(rle1);
         doTest(image1.equals(rle1.toPixImage()),
                 "image1 -> RLE1 -> image does not reconstruct the original image");
 
         System.out.println("Testing setPixel() on a 3x3 encoding.");
         setAndCheckRLE(rle1, 0, 0, 42);
         image1.setPixel(0, 0, (short) 42, (short) 42, (short) 42);
-        System.out.println(image1);
-        System.out.println(rle1);
         doTest(rle1.toPixImage().equals(image1),
            /*
                        array2PixImage(new int[][] { { 42, 3, 6 },
