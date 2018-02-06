@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dc77380a-9d01-4623-b050-91986ef10dbd" name="Default" comment="Homework 5 Part 2">
+    <list default="true" id="dc77380a-9d01-4623-b050-91986ef10dbd" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/Lab 7/Lab 7.iml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Lab 7/src/DebugMe.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Lab 7/src/ListNode.java" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Homework 5/src/Set.java" afterPath="$PROJECT_DIR$/Homework 5/src/Set.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,8 +33,8 @@
       <file leaf-file-name="DListNode.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Homework 5/src/list/DListNode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="749">
-              <caret line="95" column="91" lean-forward="true" selection-start-line="95" selection-start-column="91" selection-end-line="95" selection-end-column="91" />
+            <state relative-caret-position="-368">
+              <caret line="95" column="91" lean-forward="false" selection-start-line="95" selection-start-column="91" selection-end-line="95" selection-end-column="91" />
               <folding>
                 <element signature="e#1350#1351#0" expanded="true" />
                 <element signature="e#1387#1388#0" expanded="true" />
@@ -40,40 +43,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DList.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Homework 5/src/list/DList.java">
+      <file leaf-file-name="DebugMe.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Lab 7/src/DebugMe.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-20">
-              <caret line="209" column="39" lean-forward="true" selection-start-line="209" selection-start-column="39" selection-end-line="209" selection-end-column="39" />
-              <folding>
-                <element signature="e#3895#3896#0" expanded="true" />
-                <element signature="e#3927#3928#0" expanded="true" />
-                <element signature="e#4356#4357#0" expanded="true" />
-                <element signature="e#4388#4389#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="554">
+              <caret line="62" column="1" lean-forward="false" selection-start-line="62" selection-start-column="1" selection-end-line="62" selection-end-column="1" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Set.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ListNode.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Lab 7/src/ListNode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="21" column="1" lean-forward="false" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SList.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Homework 3/src/SList.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3030">
+              <caret line="272" column="41" lean-forward="false" selection-start-line="272" selection-start-column="41" selection-end-line="272" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Set.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Homework 5/src/Set.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
-              <caret line="281" column="20" lean-forward="true" selection-start-line="281" selection-start-column="20" selection-end-line="281" selection-end-column="20" />
-              <folding>
-                <element signature="e#1319#1349#0" expanded="true" />
-                <element signature="e#2953#2983#0" expanded="true" />
-                <element signature="e#4675#4705#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SListNode.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Homework 5/src/list/SListNode.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="667">
-              <caret line="123" column="22" lean-forward="false" selection-start-line="123" selection-start-column="22" selection-end-line="123" selection-end-column="22" />
+            <state relative-caret-position="-960">
+              <caret line="5" column="72" lean-forward="false" selection-start-line="5" selection-start-column="72" selection-end-line="5" selection-end-column="72" />
               <folding />
             </state>
           </provider>
@@ -117,8 +121,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Project1/RunLengthEncoding.java" />
-        <option value="$PROJECT_DIR$/Project1/PixImage.java" />
         <option value="$PROJECT_DIR$/Project1/RunIterator.java" />
         <option value="$PROJECT_DIR$/Project1/ListNode.java" />
         <option value="$PROJECT_DIR$/Lab1/Name.java" />
@@ -168,6 +170,8 @@
         <option value="$PROJECT_DIR$/Homework 5/src/list/DList.java" />
         <option value="$PROJECT_DIR$/Homework 5/src/list/DListNode.java" />
         <option value="$PROJECT_DIR$/Homework 5/src/Set.java" />
+        <option value="$PROJECT_DIR$/Lab 7/src/DebugMe.java" />
+        <option value="$PROJECT_DIR$/Lab 7/src/ListNode.java" />
       </list>
     </option>
   </component>
@@ -225,20 +229,13 @@
             <path>
               <item name="CS61b-Berkeley" type="b2602c69:ProjectViewProjectNode" />
               <item name="CS61b-Berkeley" type="462c0819:PsiDirectoryNode" />
-              <item name="Homework 4" type="462c0819:PsiDirectoryNode" />
+              <item name="Homework 3" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="CS61b-Berkeley" type="b2602c69:ProjectViewProjectNode" />
               <item name="CS61b-Berkeley" type="462c0819:PsiDirectoryNode" />
-              <item name="Homework 4" type="462c0819:PsiDirectoryNode" />
+              <item name="Homework 3" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CS61b-Berkeley" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CS61b-Berkeley" type="462c0819:PsiDirectoryNode" />
-              <item name="Homework 4" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="list" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="CS61b-Berkeley" type="b2602c69:ProjectViewProjectNode" />
@@ -261,12 +258,12 @@
             <path>
               <item name="CS61b-Berkeley" type="b2602c69:ProjectViewProjectNode" />
               <item name="CS61b-Berkeley" type="462c0819:PsiDirectoryNode" />
-              <item name="Project 1" type="462c0819:PsiDirectoryNode" />
+              <item name="Lab 7" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="CS61b-Berkeley" type="b2602c69:ProjectViewProjectNode" />
               <item name="CS61b-Berkeley" type="462c0819:PsiDirectoryNode" />
-              <item name="Project 1" type="462c0819:PsiDirectoryNode" />
+              <item name="Lab 7" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -590,7 +587,14 @@
       <option name="project" value="LOCAL" />
       <updated>1517881690392</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Homework 5 Part 2 and test cases">
+      <created>1517889667667</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1517889667667</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -614,7 +618,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32979852" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32979852" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -652,7 +656,8 @@
     <MESSAGE value="Lab 6 extra&#10;no need for the retype of command after throwing exceptions" />
     <MESSAGE value="Homework 5 initial" />
     <MESSAGE value="Homework 5 Part 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Homework 5 Part 1" />
+    <MESSAGE value="Homework 5 Part 2 and test cases" />
+    <option name="LAST_COMMIT_MESSAGE" value="Homework 5 Part 2 and test cases" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -668,20 +673,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Lab 1/src/Name.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="6" lean-forward="false" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Lab 2/src/Fraction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="554">
-          <caret line="165" column="0" lean-forward="false" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Lab 3/src/SList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="554">
@@ -728,13 +719,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="22" column="31" lean-forward="true" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Homework 3/src/SList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="272" column="41" lean-forward="true" selection-start-line="272" selection-start-column="41" selection-end-line="272" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -935,16 +919,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Lab 6/src/BankApp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="35" column="21" lean-forward="false" selection-start-line="35" selection-start-column="21" selection-end-line="35" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Homework 5/src/list/SList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="224">
@@ -957,14 +931,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="16" column="1" lean-forward="false" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Homework 5/src/list/List.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1027,14 +993,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Homework 5/src/list/DListNode.java">
+    <entry file="file://$PROJECT_DIR$/Homework 5/src/list/List.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="749">
-          <caret line="95" column="91" lean-forward="true" selection-start-line="95" selection-start-column="91" selection-end-line="95" selection-end-column="91" />
-          <folding>
-            <element signature="e#1350#1351#0" expanded="true" />
-            <element signature="e#1387#1388#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1125">
+          <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1043,23 +1006,64 @@
         <state relative-caret-position="-20">
           <caret line="209" column="39" lean-forward="true" selection-start-line="209" selection-start-column="39" selection-end-line="209" selection-end-column="39" />
           <folding>
-            <element signature="e#3895#3896#0" expanded="true" />
-            <element signature="e#3927#3928#0" expanded="true" />
-            <element signature="e#4356#4357#0" expanded="true" />
-            <element signature="e#4388#4389#0" expanded="true" />
+            <element signature="e#3895#3896#0" expanded="false" />
+            <element signature="e#3927#3928#0" expanded="false" />
+            <element signature="e#4356#4357#0" expanded="false" />
+            <element signature="e#4388#4389#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lab 6/src/BankApp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="35" column="21" lean-forward="false" selection-start-line="35" selection-start-column="21" selection-end-line="35" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Homework 3/src/SList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3030">
+          <caret line="272" column="41" lean-forward="false" selection-start-line="272" selection-start-column="41" selection-end-line="272" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Homework 5/src/Set.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="281" column="20" lean-forward="true" selection-start-line="281" selection-start-column="20" selection-end-line="281" selection-end-column="20" />
+        <state relative-caret-position="-960">
+          <caret line="5" column="72" lean-forward="false" selection-start-line="5" selection-start-column="72" selection-end-line="5" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Homework 5/src/list/DListNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-368">
+          <caret line="95" column="91" lean-forward="false" selection-start-line="95" selection-start-column="91" selection-end-line="95" selection-end-column="91" />
           <folding>
-            <element signature="e#1319#1349#0" expanded="true" />
-            <element signature="e#2953#2983#0" expanded="true" />
-            <element signature="e#4675#4705#0" expanded="true" />
+            <element signature="e#1350#1351#0" expanded="true" />
+            <element signature="e#1387#1388#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lab 7/src/DebugMe.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="554">
+          <caret line="62" column="1" lean-forward="false" selection-start-line="62" selection-start-column="1" selection-end-line="62" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lab 7/src/ListNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="1" lean-forward="false" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
