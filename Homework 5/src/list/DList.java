@@ -57,6 +57,10 @@ public class DList extends List {
      *  DList() constructs for an empty DList.
      **/
     public DList() {
+        head = new DListNode(null, null, null, null);
+        head.next = head;
+        head.prev = head;
+        size = 0;
         // Your solution here.  Similar to Homework 4, but now you need to specify
         //   the `list' field (second parameter) as well.
     }
@@ -69,6 +73,10 @@ public class DList extends List {
      *  Performance:  runs in O(1) time.
      **/
     public void insertFront(Object item) {
+        DListNode insert = newNode(item, this, head, head.next);
+        head.next.prev = insert;
+        head.next = insert;
+        size++;
         // Your solution here.  Similar to Homework 4, but now you need to specify
         //   the `list' field (second parameter) as well.
     }
@@ -81,6 +89,10 @@ public class DList extends List {
      *  Performance:  runs in O(1) time.
      **/
     public void insertBack(Object item) {
+        DListNode insert = newNode(item, this, head.prev, head);
+        head.prev.next = insert;
+        head.prev = insert;
+        size++;
         // Your solution here.  Similar to Homework 4, but now you need to specify
         //   the `list' field (second parameter) as well.
     }

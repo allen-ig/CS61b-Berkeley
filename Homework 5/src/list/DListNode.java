@@ -93,6 +93,10 @@ public class DListNode extends ListNode {
         if (!isValidNode()) {
             throw new InvalidNodeException("insertAfter() called on invalid node");
         }
+        DListNode insert = ((DList) myList).newNode(item, (DList) myList, this, this.next);
+        this.next = insert;
+        insert.next.prev = insert;
+        myList.size++;
         // Your solution here.  Will look something like your Homework 4 solution,
         //   but changes are necessary.  For instance, there is no need to check if
         //   "this" is null.  Remember that this node's "myList" field tells you
@@ -113,6 +117,10 @@ public class DListNode extends ListNode {
         if (!isValidNode()) {
             throw new InvalidNodeException("insertBefore() called on invalid node");
         }
+        DListNode insert = ((DList) myList).newNode(item, (DList) myList, this.prev, this);
+        this.prev = insert;
+        insert.prev.next = insert;
+        myList.size++;
         // Your solution here.  Will look something like your Homework 4 solution,
         //   but changes are necessary.  For instance, there is no need to check if
         //   "this" is null.  Remember that this node's "myList" field tells you
@@ -132,6 +140,9 @@ public class DListNode extends ListNode {
         if (!isValidNode()) {
             throw new InvalidNodeException("remove() called on invalid node");
         }
+        this.next.prev = this.prev;
+        this.prev.next = this.next;
+        myList.size--;
         // Your solution here.  Will look something like your Homework 4 solution,
         //   but changes are necessary.  For instance, there is no need to check if
         //   "this" is null.  Remember that this node's "myList" field tells you

@@ -8,7 +8,7 @@ import list.*;
  **/
 public class Set {
     /* Fill in the data fields here. */
-
+    public List list;
     /**
      * Set ADT invariants:
      *  1)  The Set's elements must be precisely the elements of the List.
@@ -23,6 +23,7 @@ public class Set {
      *  Performance:  runs in O(1) time.
      **/
     public Set() {
+        list = new DList();
         // Your solution here.
     }
 
@@ -33,7 +34,7 @@ public class Set {
      **/
     public int cardinality() {
         // Replace the following line with your solution.
-        return 0;
+        return list.length();
     }
 
     /**
@@ -44,7 +45,31 @@ public class Set {
      *
      *  Performance:  runs in O(this.cardinality()) time.
      **/
-    public void insert(Comparable c) {
+    @SuppressWarnings("unchecked")
+    public void insert(Comparable c){
+        if (this.cardinality() == 0) list.insertFront(c);
+        else {
+            try{
+                ListNode cur = list.front();
+                for (int i = 0; i < this.cardinality(); i++){
+                    if (c.compareTo(cur.item()) == 0) return;
+                    else if(c.compareTo(cur.item()) < 0){
+                        cur.insertBefore(c);
+                        return;
+                    }
+                    if (i == this.cardinality()){
+                        cur.insertAfter(c);
+                        return;
+                    }else{
+                        cur = cur.next();
+                    }
+                }
+            }catch (InvalidNodeException e1){
+                System.err.println(e1);
+            }
+            return;
+        }
+
         // Your solution here.
     }
 
@@ -63,7 +88,30 @@ public class Set {
      *  DO NOT MODIFY THE SET s.
      *  DO NOT ATTEMPT TO COPY ELEMENTS; just copy _references_ to them.
      **/
+    @SuppressWarnings("unchecked")
     public void union(Set s) {
+        if (this.cardinality() == 0) list = s.list;
+        else{
+            try{
+                ListNode this_cur = list.front();
+                ListNode s_cur = s.list.front();
+                while (this_cur.isValidNode() && s_cur.isValidNode()){
+                    if (this_cur.item().equals(s_cur.item())) {
+                        s_cur = s_cur.next();
+                        continue;
+                    }
+                    else if (((Comparable) this_cur.item()).compareTo(s_cur.item()) < 0){
+                        this_cur.insertBefore(s_cur);
+                        s_cur = s_cur.next();
+                    }else{
+
+                    }
+
+                }
+            }catch (InvalidNodeException e){
+                System.err.println(e);
+            }
+        }
         // Your solution here.
     }
 
@@ -100,8 +148,21 @@ public class Set {
      *            DEVIATIONS WILL LOSE POINTS.
      **/
     public String toString() {
+        String res = "{  ";
+        if (list.isEmpty()) return "{  }";
+        ListNode cur = list.front();
+        try{
+            while(cur.next() != null){
+                res += cur.item();
+                res += "  ";
+                cur = cur.next();
+            }
+        }catch (InvalidNodeException e){
+            System.err.println(e);
+        }
+        res += "}";
+        return res;
         // Replace the following line with your solution.
-        return "";
     }
 
     public static void main(String[] argv) {
