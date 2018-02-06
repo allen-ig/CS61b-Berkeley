@@ -51,7 +51,7 @@ public class Set {
         else {
             try{
                 ListNode cur = list.front();
-                for (int i = 0; i < this.cardinality(); i++){
+                for (int i = 1; i <= this.cardinality(); i++){
                     if (c.compareTo(cur.item()) == 0) return;
                     else if(c.compareTo(cur.item()) < 0){
                         cur.insertBefore(c);
@@ -91,6 +91,7 @@ public class Set {
     @SuppressWarnings("unchecked")
     public void union(Set s) {
         if (this.cardinality() == 0) list = s.list;
+        if (s.cardinality() == 0) return;
         else{
             try{
                 ListNode this_cur = list.front();
@@ -98,15 +99,18 @@ public class Set {
                 while (this_cur.isValidNode() && s_cur.isValidNode()){
                     if (this_cur.item().equals(s_cur.item())) {
                         s_cur = s_cur.next();
-                        continue;
                     }
-                    else if (((Comparable) this_cur.item()).compareTo(s_cur.item()) < 0){
-                        this_cur.insertBefore(s_cur);
+                    else if (((Comparable) this_cur.item()).compareTo(s_cur.item()) > 0){
+                        this_cur.insertBefore(s_cur.item());
                         s_cur = s_cur.next();
                     }else{
-
+                        if(!this_cur.next().isValidNode()){
+                            this_cur.insertAfter(s_cur.item());
+                            s_cur = s_cur.next();
+                        }else{
+                            this_cur = this_cur.next();
+                        }
                     }
-
                 }
             }catch (InvalidNodeException e){
                 System.err.println(e);
@@ -128,10 +132,62 @@ public class Set {
      *  DO NOT CONSTRUCT ANY NEW NODES.
      *  DO NOT ATTEMPT TO COPY ELEMENTS.
      **/
+    @SuppressWarnings("unchecked")
     public void intersect(Set s) {
+        if (s.cardinality() == 0) {
+            try{
+                for (int i = 1; i <= this.cardinality(); i++){
+                    list.front().remove();
+                }
+            }catch (InvalidNodeException e){
+                System.err.println(e);
+            }
+            return;
+        }
+        try {
+            ListNode s_cur = s.list.front();
+            ListNode this_cur = list.front();
+            while (s_cur.isValidNode() && this_cur.isValidNode()){
+                if (((Comparable) this_cur.item()).compareTo(s_cur.item()) > 0){            //node in this is larger
+                    if (s_cur.next().isValidNode()){
+                        s_cur = s_cur.next();
+                    }else{                                                                  //last node in s
+                        while (this_cur.isValidNode()){
+                            this_cur = removeRest(this_cur);
+                        }
+                        return;
+                    }
+                }else if(((Comparable) this_cur.item()).compareTo(s_cur.item()) == 0){      //node in this equals node in s
+                    this_cur = this_cur.next();
+                    if(s_cur.next().isValidNode()){
+                        s_cur = s_cur.next();
+                    }else {                                                                 //last node in s
+                        while (this_cur.isValidNode()){
+                            this_cur = removeRest(this_cur);
+                        }
+                        return;
+                    }
+                }else{                                                                      //node in this is smaller
+                    if (!this_cur.next().isValidNode()){                                    //last node in this
+                        this_cur.remove();
+                        return;
+                    }else{
+                        this_cur = removeRest(this_cur);
+                    }
+                }
+            }
+        }catch (InvalidNodeException e){
+            System.err.println(e);
+        }
         // Your solution here.
     }
 
+    private ListNode removeRest(ListNode cur) throws InvalidNodeException{
+        ListNode after = cur.next();
+        cur.remove();
+        cur = after;
+        return cur;
+    }
     /**
      *  toString() returns a String representation of this Set.  The String must
      *  have the following format:
@@ -152,7 +208,7 @@ public class Set {
         if (list.isEmpty()) return "{  }";
         ListNode cur = list.front();
         try{
-            while(cur.next() != null){
+            while(cur.isValidNode()){
                 res += cur.item();
                 res += "  ";
                 cur = cur.next();
@@ -166,31 +222,98 @@ public class Set {
     }
 
     public static void main(String[] argv) {
+        /**Set s = new Set();
+         s.insert(new Integer(3));
+         s.insert(new Integer(4));
+         s.insert(new Integer(3));
+         System.out.println("Set s = " + s);
+
+         Set s2 = new Set();
+         s2.insert(new Integer(4));
+         s2.insert(new Integer(5));
+         s2.insert(new Integer(5));
+         System.out.println("Set s2 = " + s2);
+
+         Set s3 = new Set();
+         s3.insert(new Integer(5));
+         s3.insert(new Integer(3));
+         s3.insert(new Integer(8));
+         System.out.println("Set s3 = " + s3);
+
+         s.union(s2);
+         System.out.println("After s.union(s2), s = " + s);
+
+         s.intersect(s3);
+         System.out.println("After s.intersect(s3), s = " + s);
+
+         System.out.println("s.cardinality() = " + s.cardinality());
+
+         * */
+        // You may want to add more (ungraded) test code here.
+        System.out.println("Testing insert()");
         Set s = new Set();
         s.insert(new Integer(3));
         s.insert(new Integer(4));
         s.insert(new Integer(3));
-        System.out.println("Set s = " + s);
+        System.out.println("Set s should be { 3 4 }: " + s);
 
         Set s2 = new Set();
         s2.insert(new Integer(4));
         s2.insert(new Integer(5));
         s2.insert(new Integer(5));
-        System.out.println("Set s2 = " + s2);
+        System.out.println("Set s2 should be { 4 5 }: " + s2);
 
         Set s3 = new Set();
         s3.insert(new Integer(5));
         s3.insert(new Integer(3));
         s3.insert(new Integer(8));
-        System.out.println("Set s3 = " + s3);
+        System.out.println("Set s3 should be { 3 5 8 }: " + s3);
 
+        System.out.println();
+        System.out.println("Tesing union()");
         s.union(s2);
-        System.out.println("After s.union(s2), s = " + s);
+        System.out.println("After s.union(s2), s should be { 3 4 5 }: " + s);
+        s2.union(s3);
+        System.out.println("After s2.union(s3), s2 should be { 3 4 5 8 }: " + s2);
+        Set s4 = new Set();
+        System.out.println("Empty set s4 = " + s4);
+        s.union(s4);
+        System.out.println("After s.union(s4), s should be { 3 4 5 }: " + s);
+        s4.union(s);
+        System.out.println("After s4.union(s), s4 should be { 3 4 5 }: " + s4);
 
-        s.intersect(s3);
-        System.out.println("After s.intersect(s3), s = " + s);
+        System.out.println();
+        System.out.println("Tesing intersect()");
+        Set s5 = new Set();
+        Set s6 = new Set();
+        s6.insert(new Integer(1));
+        s5.intersect(s6);
+        System.out.println("{}.intersect({1}) should be { }: " + s5);
+        s6.intersect(s5);
+        System.out.println("{1}.intersect({}) should be { }: " + s6);
+        s6.insert(new Integer(1));
+        Set s7 = new Set();
+        s7.insert(new Integer(1));
+        s7.insert(new Integer(2));
+        s6.intersect(s7);
+        System.out.println("{1}.intersect({1 2}) should be { 1 }: " + s6);
+        s6.insert(new Integer(2));
+        s6.insert(new Integer(3));
+        s6.intersect(s7);
+        System.out.println("{1 2 3}.intersect({1 2}) should be { 1 2 }: " + s6);
+        s6.insert(new Integer(3));
+        s6.insert(new Integer(5));
+        s7.insert(new Integer(4));
+        s7.insert(new Integer(7));
+        s7.intersect(s6);
+        System.out.println("{1 2 4 7}.intersect({1 2 3 5}) should be { 1 2 }: " + s7);
 
-        System.out.println("s.cardinality() = " + s.cardinality());
-        // You may want to add more (ungraded) test code here.
+        System.out.println();
+        System.out.println("Tesing cardinality()");
+        System.out.println("s.cardinality() should be 3: " + s.cardinality());
+        System.out.println("s4.cardinality() should be 3: " + s4.cardinality());
+        System.out.println("s5.cardinality() should be 0: " + s5.cardinality());
+        System.out.println("s6.cardinality() should be 4: " + s6.cardinality());
+        System.out.println("s7.cardinality() should be 2: " + s7.cardinality());
     }
 }
