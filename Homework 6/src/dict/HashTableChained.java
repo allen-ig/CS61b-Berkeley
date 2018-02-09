@@ -1,6 +1,7 @@
 /* HashTableChained.java */
 
 package dict;
+import list.*;
 
 /**
  *  HashTableChained implements a Dictionary as a hash table with chaining.
@@ -19,7 +20,9 @@ public class HashTableChained implements Dictionary {
     /**
      *  Place any data fields here.
      **/
-
+    private DList[] table;
+    private int size;
+    private int N;
 
 
     /**
@@ -29,15 +32,38 @@ public class HashTableChained implements Dictionary {
      **/
 
     public HashTableChained(int sizeEstimate) {
+        int raw = (int) (sizeEstimate * 1.4);
+        if (isPrime(raw)) table = new DList[raw];
+        else{
+            while (!isPrime(raw)){
+                raw++;
+            }
+            table = new DList[raw];
+        }
+        size = 0;
+        N = raw;
+        for (int i = 0; i < N; i++){
+            table[i] = new DList();
+        }
         // Your solution here.
     }
 
+    private boolean isPrime(int num){
+        if (num < 2 || num % 2 == 0) return false;
+        for (int i = 2; i * i < num; i++){
+            if (num % i == 0) return false;
+        }
+        return true;
+    }
     /**
      *  Construct a new empty hash table with a default size.  Say, a prime in
      *  the neighborhood of 100.
      **/
 
     public HashTableChained() {
+        table = new DList[101];
+        size = 0;
+        N = 101;
         // Your solution here.
     }
 
@@ -51,7 +77,15 @@ public class HashTableChained implements Dictionary {
 
     int compFunction(int code) {
         // Replace the following line with your solution.
-        return 88;
+        return mod(mod((997 * code + 991), 16908799), N);
+    }
+
+    private static int mod(int input, int modNum){
+        if (input % modNum < 0){
+            return input % modNum + modNum;
+        }else {
+            return input % modNum;
+        }
     }
 
     /**
@@ -63,7 +97,7 @@ public class HashTableChained implements Dictionary {
 
     public int size() {
         // Replace the following line with your solution.
-        return 0;
+        return size;
     }
 
     /**
@@ -74,7 +108,7 @@ public class HashTableChained implements Dictionary {
 
     public boolean isEmpty() {
         // Replace the following line with your solution.
-        return true;
+        return size == 0;
     }
 
     /**
@@ -91,8 +125,14 @@ public class HashTableChained implements Dictionary {
      **/
 
     public Entry insert(Object key, Object value) {
+        Entry inserted = new Entry();
+        inserted.key = key;
+        inserted.value = value;
+        int loc = compFunction(key.hashCode());
+        table[loc].insertBack(inserted);
+        size++;
         // Replace the following line with your solution.
-        return null;
+        return inserted;
     }
 
     /**
@@ -108,8 +148,14 @@ public class HashTableChained implements Dictionary {
      **/
 
     public Entry find(Object key) {
+        int loc = compFunction(key.hashCode());
+        DList dest_list = table[loc];
+        DListNode cur = dest_list.front();
+        if (cur == null) return null;
+        else {
+            return (Entry) cur.item;
+        }
         // Replace the following line with your solution.
-        return null;
     }
 
     /**
@@ -126,15 +172,81 @@ public class HashTableChained implements Dictionary {
      */
 
     public Entry remove(Object key) {
+        int loc = compFunction(key.hashCode());
+        size--;
+        if (find(key) == null) return null;
+        else{
+            Entry res = (Entry) table[loc].front().item;
+            table[loc].remove(table[loc].front());
+            return res;
+        }
         // Replace the following line with your solution.
-        return null;
     }
 
     /**
      *  Remove all entries from the dictionary.
      */
     public void makeEmpty() {
+        for (int i = 0; i < table.length; i++){
+            table[i] = new DList();
+        }
+        size = 0;
         // Your solution here.
     }
 
+    public String collisions() {
+        String collisions = new String("(Bucket:Collisions):");
+        int numCollisions = 0;
+        for (int i = 0; i < N; i++) {
+            if (table[i].length() > 1) {
+                collisions = collisions + ",("+i+":"+ (table[i].length()-1)+")";
+                numCollisions += table[i].length()-1;
+            } else {
+                collisions = collisions + ",("+i+":0)";
+            }
+        }
+        collisions += " Number of collisions: " + numCollisions;
+        return collisions;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Constructuing new HashTable");
+        HashTableChained hash1 = new HashTableChained(10);
+        System.out.println(hash1.N);
+        hash1.insert(1,1);
+        hash1.insert(2,1);
+        hash1.insert(3,1);
+        hash1.insert(4,1);
+        hash1.insert(5,1);
+        System.out.println("After adding keys 1,2,3,4,5, Collisions are:"+ hash1.collisions());
+        hash1.insert(1,1);
+        hash1.insert(2,1);
+        hash1.insert(3,1);
+        hash1.insert(4,1);
+        hash1.insert(5,1);
+        System.out.println("After adding keys 1,2,3,4,5, Collisions are:"+ hash1.collisions());
+        hash1.insert(6,1);
+        hash1.insert(7,3);
+        hash1.insert(8,1);
+        hash1.insert(9,1);
+        hash1.insert(10,1);
+        System.out.println("After adding keys 6,7,8,9,10 Collisions are:"+ hash1.collisions());
+        hash1.remove(1);
+        hash1.remove(2);
+        hash1.remove(3);
+        hash1.remove(4);
+        hash1.remove(5);
+        System.out.println("After removing keys 1,2,3,4,5 Collisions are:"+ hash1.collisions());
+        System.out.println("hash1.entries is:"+hash1.size);
+        System.out.println("key 2 has value: "+ hash1.find(2).value);
+        System.out.println("key 7 has value: "+ hash1.find(7).value);
+        System.out.println("find key 11: "+ hash1.find(11));
+        System.out.println("isEmpty?"+ hash1.isEmpty());
+        hash1.makeEmpty();
+        System.out.println("Removing all entries");
+        System.out.println("isEmpty?"+ hash1.isEmpty());
+
+
+
+    }
 }

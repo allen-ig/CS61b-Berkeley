@@ -63,10 +63,17 @@ public class SimpleBoard {
      */
 
     public boolean equals(Object board) {
+        for (int i = 0; i < DIMENSION; i++){
+            for (int j = 0; j < DIMENSION; j++){
+                if (this.elementAt(i, j) != ((SimpleBoard) board).elementAt(i, j)){
+                    return false;
+                }
+            }
+        }
+        return true;
         // Replace the following line with your solution.  Be sure to return false
         //   (rather than throwing a ClassCastException) if "board" is not
         //   a SimpleBoard.
-        return false;
     }
 
     /**
@@ -76,7 +83,13 @@ public class SimpleBoard {
 
     public int hashCode() {
         // Replace the following line with your solution.
-        return 99;
+        int res = 0;
+        for (int i = 0; i < DIMENSION; i++){
+            for (int j = 0; j < DIMENSION; j++){
+                res = (3 * res + elementAt(i, j)) % 16908799;
+            }
+        }
+        return res;
     }
 
 }
