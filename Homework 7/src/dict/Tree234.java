@@ -2,6 +2,8 @@
 
 package dict;
 
+import jdk.nashorn.api.tree.Tree;
+
 /**
  *  A Tree234 implements an ordered integer dictionary ADT using a 2-3-4 tree.
  *  Only int keys are stored; no object is associated with each key.  Duplicate
@@ -102,6 +104,156 @@ public class Tree234 extends IntDictionary {
      **/
     public void insert(int key) {
         // Fill in your solution here.
+        if (find(key)) return;
+        if (root == null) {
+            root = new Tree234Node(null, key);
+            return;
+        }
+        Tree234Node curr = root;
+
+        /*
+        root node has no child but has three keys
+         */
+        if (curr.child1 == null && curr.keys == 3){
+            Tree234Node newRoot = new Tree234Node(null, curr.key2);
+            Tree234Node newLeft = new Tree234Node(newRoot, curr.key1);
+            Tree234Node newRight = new Tree234Node(newRoot, curr.key3);
+            root = newRoot;
+            newRoot.child1 = newLeft;
+            newRoot.child2 = newRight;
+            curr = root;
+        }
+        while (curr.child1 != null){
+            if (curr.keys == 3){
+                if (curr == root){
+                    /*
+                      curr is the root node
+                      we construct a new root node and split the old one
+                     */
+                    Tree234Node newRoot = new Tree234Node(null, curr.key2);
+                    Tree234Node newLeft = new Tree234Node(newRoot, curr.key1);
+                    Tree234Node newRight = new Tree234Node(newRoot, curr.key3);
+                    root = newRoot;
+                    newRoot.child1 = newLeft;
+                    newRoot.child2 = newRight;
+                    /*
+                        link newLeft and newRight node to the old root's child
+                     */
+                    newLeft.child1 = curr.child1;
+                    newLeft.child2 = curr.child2;
+                    newRight.child1 = curr.child3;
+                    newRight.child2 = curr.child4;
+
+                    curr.child1.parent = newLeft;
+                    curr.child2.parent = newLeft;
+                    curr.child3.parent = newRight;
+                    curr.child4.parent = newRight;
+                    /*
+                        move on to the next level
+                     */
+                    curr = moveToNextLevel(curr, key);
+                }else{
+                    curr = splitThreeKeyNode(curr);
+                    curr = moveToNextLevel(curr, key);
+                }
+            }else {
+                curr = moveToNextLevel(curr, key);
+            }
+        }
+        if (curr.keys == 3){
+            curr = moveToNextLevel(splitThreeKeyNode(curr), key);
+        }
+        giveValue(curr, key);
+        curr.keys++;
+    }
+
+    private Tree234Node moveToNextLevel(Tree234Node node, int key){
+        if (node.child1 == null){
+            return node;
+        }else{
+            if(key < node.key1){
+                node = node.child1;
+            }else if (node.keys == 1 || key < node.key2){
+                node = node.child2;
+            }else if (node.keys == 2 || key < node.key3){
+                node = node.child3;
+            }else{
+                node = node.child4;
+            }
+        }
+        return node;
+    }
+
+    private void giveValue(Tree234Node node, int key){
+        if(node.keys == 1){
+            if (key < node.key1){
+                node.key2 = node.key1;
+                node.key1 = key;
+            }else{
+                node.key2 = key;
+            }
+        }else if (node.keys == 2){
+            if (key < node.key1){
+                node.key3 = node.key2;
+                node.key2 = node.key1;
+                node.key1 = key;
+            }else if (key < node.key2){
+                node.key3 = node.key2;
+                node.key2 = key;
+            }else{
+                node.key3 = key;
+            }
+        }
+    }
+
+    private Tree234Node splitThreeKeyNode(Tree234Node node){
+        Tree234Node newLeft = new Tree234Node(node.parent, node.key1);
+        Tree234Node newRight = new Tree234Node(node.parent, node.key3);
+        if (node.parent.keys == 1){
+            if (node.key2 < node.parent.key1){
+                node.parent.key2 = node.parent.key1;
+                node.parent.key1 = node.key2;
+            }else{
+                node.parent.key2 = node.key2;
+            }
+        }else{
+            if (node.key2 < node.parent.key1){
+                node.parent.key3 = node.parent.key2;
+                node.parent.key2 = node.parent.key1;
+                node.parent.key1 = node.key2;
+            }else if (node.key2 < node.parent.key2){
+                node.parent.key3 = node.parent.key2;
+                node.parent.key2 = node.key2;
+            }else{
+                node.parent.key3 = node.key2;
+            }
+        }
+        node.parent.keys++;
+        if (node == node.parent.child1){
+            node.parent.child4 = node.parent.child3;
+            node.parent.child3 = node.parent.child2;
+            node.parent.child2 = newRight;
+            node.parent.child1 = newLeft;
+        }else if (node == node.parent.child2){
+            node.parent.child4 = node.parent.child3;
+            node.parent.child3 = newRight;
+            node.parent.child2 = newLeft;
+        }else {
+            node.parent.child3 = newLeft;
+            node.parent.child4 = newRight;
+        }
+        if (node.child1 != null){
+            newLeft.child1 = node.child1;
+            newLeft.child2 = node.child2;
+            newRight.child1 = node.child3;
+            newRight.child2 = node.child4;
+
+            node.child1.parent = newLeft;
+            node.child2.parent = newLeft;
+            node.child3.parent = newRight;
+            node.child4.parent = newRight;
+        }
+        return newLeft.parent;
     }
 
 
