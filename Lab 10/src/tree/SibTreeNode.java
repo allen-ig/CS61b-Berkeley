@@ -2,6 +2,8 @@
 
 package tree;
 
+//import org.omg.PortableInterceptor.INACTIVE;
+
 /**
  *  A SibTreeNode object is a node in a SibTree (sibling-based general tree).
  *  @author Jonathan Shewchuk
@@ -78,7 +80,9 @@ class SibTreeNode extends TreeNode {
      */
     public TreeNode parent() throws InvalidNodeException {
         // REPLACE THE FOLLOWING LINE WITH YOUR SOLUTION TO PART I.
-        return null;
+        if (!valid) throw new InvalidNodeException();
+        if (this.parent == null) return new SibTreeNode();
+        return this.parent;
     }
 
     /**
@@ -133,6 +137,30 @@ class SibTreeNode extends TreeNode {
      */
     public void insertChild(Object item, int c) throws InvalidNodeException {
         // FILL IN YOUR SOLUTION TO PART II HERE.
+        if (!valid) throw new InvalidNodeException();
+        SibTreeNode insert = new SibTreeNode(myTree, item);
+        insert.parent = this;
+        SibTreeNode curr = firstChild;
+        if (c <= 1) {
+            if (curr != null) {
+                insert.nextSibling = firstChild;
+                this.firstChild = insert;
+            }else {
+                this.firstChild  = insert;
+            }
+        }else if (c > this.myTree.size){
+            curr.nextSibling = insert;
+            //insert.firstChild = firstChild;
+        }else{
+            while (c > 2){
+                curr = curr.nextSibling;
+                c--;
+            }
+            insert.nextSibling = curr.nextSibling;
+            //insert.firstChild = firstChild;
+            curr.nextSibling = insert;
+        }
+        myTree.size++;
     }
 
     /**
@@ -143,6 +171,48 @@ class SibTreeNode extends TreeNode {
      */
     public void removeLeaf() throws InvalidNodeException {
         // FILL IN YOUR SOLUTION TO PART III HERE.
+        if (!valid) throw new InvalidNodeException();
+        /*
+        check if this node has children
+         */
+        if (this.firstChild != null) {
+            return;
+        }
+        /*
+        check if this node is the root node of the tree
+         */
+        if (this.parent == null){
+            this.valid = false;
+            myTree.size--;
+            return;
+        }
+        /*
+        construct a helper node prior to the first child of this.parent
+         */
+        SibTreeNode curr = new SibTreeNode();
+        curr.nextSibling = this.parent.firstChild;
+        curr.valid = true;
+        /*
+        move a node pointer to the node prior to the targeted remove node
+         */
+        while (curr.nextSibling() != this){
+            curr = curr.nextSibling;
+        }
+        /*
+        remove node
+         */
+        if (this.nextSibling != null){
+            curr.nextSibling = this.nextSibling;
+        }else{
+            curr.nextSibling = null;
+        }
+        /*
+        check if this node is the first child of its parent
+         */
+        if (this == this.parent.firstChild){
+            this.parent.firstChild = this.nextSibling;
+        }
+        myTree.size--;
+        this.valid = false;
     }
-
 }

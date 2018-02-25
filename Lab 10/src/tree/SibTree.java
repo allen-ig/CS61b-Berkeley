@@ -149,7 +149,7 @@ public class SibTree extends Tree {
                     " invalid node.");
         } catch (InvalidNodeException e) {
         }
-
+        System.out.println(t.toString());
         // Add more nodes to tree.
         System.out.println("\nTesting insertChild()." +
                 "  Adding two more nodes to the 2-node tree.");
@@ -188,6 +188,7 @@ public class SibTree extends Tree {
             }
 
             System.out.println("Adding two more nodes to the 4-node tree.");
+            System.out.println(t.toString());
             r3.insertChild(new Integer(132), 1);
             r3.insertChild(new Integer(131), 1);
             r31 = r3.child(1);
@@ -215,7 +216,7 @@ public class SibTree extends Tree {
             if (r32.nextSibling().isValidNode()) {
                 System.out.println("  ERROR:  Node r32 thinks it has a next sibling.");
             }
-        } catch (Exception e) {
+            } catch (Exception e) {
             System.out.println("  ERROR:  unexpected exception while adding and" +
                     " testing nodes.");
             //      System.exit(1);
@@ -268,6 +269,7 @@ public class SibTree extends Tree {
 
 
         System.out.println("Removing another node from 5-node tree.");
+        System.out.println(t.toString());
         try {
             r32.removeLeaf();
         } catch (Exception e) {
@@ -295,6 +297,7 @@ public class SibTree extends Tree {
 
         System.out.println("Attempting to remove non-leaf node from 4-node tree.");
         System.out.println("  Operation should have no effect.");
+        System.out.println(t.toString());
         try {
             r3.removeLeaf();
             if (!r3.isValidNode()) {
