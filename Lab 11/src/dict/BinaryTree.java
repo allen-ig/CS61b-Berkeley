@@ -128,10 +128,18 @@ public class BinaryTree implements Dictionary {
      *
      *  Be sure this method returns null if node == null.
      **/
-
+    @SuppressWarnings("unchecked")
     private BinaryTreeNode findHelper(Comparable key, BinaryTreeNode node) {
         // Replace the following line with your solution.
-        return null;
+        if (node == null) return null;
+        if (key.compareTo(node.entry.key()) < 0){
+            return node = findHelper(key, node.leftChild);
+
+        }else if (key.compareTo(node.entry.key()) > 0){
+            return findHelper(key, node.rightChild);
+        }else {
+            return node;
+        }
     }
 
     /**
@@ -145,9 +153,80 @@ public class BinaryTree implements Dictionary {
      *  @return an Entry referencing the key and an associated value, or null if
      *          no entry contains the specified key.
      **/
+    @SuppressWarnings("unchecked")
     public Entry remove(Object key) {
         // Replace the following line with your solution.
-        return null;
+        BinaryTreeNode node = findHelper((Comparable) key, root);
+        /*
+        the node with key of key is not in the BST
+         */
+        if (node == null) return null;
+        /*
+        the node with key of key has no child
+         */
+        if (node.leftChild == null && node.rightChild == null){
+            if (node == root){
+                root = null;
+                size--;
+                return node.entry;
+            }
+            if (((Comparable) key).compareTo(node.parent.entry.key()) <= 0){
+                node.parent.leftChild = null;
+            }else {
+                node.parent.rightChild = null;
+            }
+            /*
+            the node with key of key has left child
+             */
+        }else if (node.leftChild != null && node.rightChild == null){
+            if (node == root){
+                root = node.leftChild;
+                node.leftChild.parent = null;
+                size--;
+                return node.entry;
+            }
+            node.leftChild.parent = node.parent;
+            if (((Comparable) key).compareTo(node.parent.entry.key()) <= 0) {
+                node.parent.leftChild = node.leftChild;
+            }else {
+                node.parent.rightChild = node.leftChild;
+            }
+            /*
+            the node with key of key has right child
+             */
+        }else if (node.rightChild != null && node.leftChild == null){
+            if (node == root){
+                root = node.rightChild;
+                node.rightChild.parent = null;
+                size--;
+                return node.entry;
+            }
+            node.rightChild.parent = node.parent;
+            if (((Comparable) key).compareTo(node.parent.entry.key()) <= 0){
+                node.parent.leftChild = node.rightChild;
+            }else {
+                node.parent.rightChild = node.rightChild;
+            }
+            /*
+            the node with key of key has both children
+             */
+        }else {
+            BinaryTreeNode smallest = node.rightChild;
+            while (smallest.leftChild != null){
+                smallest = smallest.leftChild;
+            }
+
+            /*if (node == root){
+                root.entry = remove(smallest);
+                size--;
+                return root.entry;
+            }*/
+            //if (((Comparable) key).compareTo(node.parent.entry.key()) <= 0){}
+            node.entry = remove(smallest.entry.key());
+            size++;
+        }
+        size--;
+        return node.entry;
     }
 
     /**
