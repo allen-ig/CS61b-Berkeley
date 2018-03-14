@@ -3,6 +3,7 @@
 import java.util.*;
 import set.*;
 
+
 /**
  *  The Maze class represents a maze in a rectangular grid.  There is exactly
  *  one path between any two points.
@@ -28,6 +29,8 @@ public class Maze {
     private static final int FROMABOVE = 3;
     private static final int FROMBELOW = 4;
 
+    private static final int HORIZWALL=0;
+    private static final int VERTWALL=1;
     /**
      *  Maze() creates a rectangular maze having "horizontalSize" cells in the
      *  horizontal direction, and "verticalSize" cells in the vertical direction.
@@ -61,6 +64,72 @@ public class Maze {
             for (i = 0; i < horiz - 1; i++) {
                 for (j = 0; j < vert; j++) {
                     vWalls[i][j] = true;
+                }
+            }
+        }
+
+        int numElement = horizontalSize * verticalSize;
+        DisjointSets djs = new DisjointSets(numElement);
+
+        Wall[] allWalls = new Wall[horiz * (vert - 1) + (horiz - 1) * vert];
+
+        int count = 0;
+
+        if (vert > 1){
+            for (j = 0; j < vert - 1; j++){
+                for (i = 0; i < horiz; i++){
+                    if (hWalls[i][j]) {
+                        allWalls[count] = new Wall(i, j, count, HORIZWALL);
+                        count++;
+                    }
+                }
+            }
+        }
+
+        if (horiz > 1){
+            for (i = 0; i < horiz - 1; i++){
+                for (j = 0; j < vert; j++){
+                    if (vWalls[i][j]) {
+                        allWalls[count] = new Wall(i, j, count, VERTWALL);
+                        count++;
+                    }
+                }
+            }
+        }
+
+        for (int w = allWalls.length; w > 1; w--){
+            int rand = randInt(w);
+            Wall temp = allWalls[rand];
+            temp.rank = w - 1;
+            allWalls[rand] = allWalls[w - 1];
+            allWalls[w - 1] = temp;
+        }
+
+        for (i = 0; i < allWalls.length; i++){
+            Wall curr = allWalls[i];
+            int cell1;
+            int cell2;
+            int cell1x = curr.x;
+            int cell1y = curr.y;
+            int cell2x = 0;
+            int cell2y = 0;
+            if (curr.type == HORIZWALL){
+                cell2x = curr.x;
+                cell2y = curr.y + 1;
+            }
+            if (curr.type == VERTWALL){
+                cell2x = curr.x + 1;
+                cell2y = curr.y;
+            }
+            cell1 = cell1y * horiz + cell1x;
+            cell2 = cell2y * horiz + cell2x;
+
+            if ((djs.find(cell1) != djs.find(cell2))){
+                djs.union(djs.find(cell1), djs.find((cell2)));
+                if (curr.type == HORIZWALL){
+                    hWalls[curr.x][curr.y] = false;
+                }else{
+                    vWalls[curr.x][curr.y] = false;
                 }
             }
         }
