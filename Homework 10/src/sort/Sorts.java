@@ -16,7 +16,7 @@ public class Sorts {
      *  significant (ones) digit; a one means sort on the second least
      *  significant (sixteens) digit; and so on, up to a seven, which means
      *  sort on the most significant digit.
-     *  @param key is an array of ints.  Assume no key is negative.
+     *  @param keys is an array of ints.  Assume no key is negative.
      *  @param whichDigit is a number in 0...7 specifying which base-16 digit
      *    is the sort key.
      *  @return an array of type int, having the same length as "keys"
@@ -26,13 +26,30 @@ public class Sorts {
      **/
     public static int[] countingSort(int[] keys, int whichDigit) {
         // Replace the following line with your solution.
-        return null;
+        int[] counts = new int[16];
+        int[] res = new int[keys.length];
+        int[] hexDigit = new int[keys.length];
+        for (int i = 0; i < keys.length; i++){
+            hexDigit[i] = (keys[i] >> (whichDigit * 4)) & 15;
+            counts[hexDigit[i]]++;
+        }
+        int total = 0;
+        for (int i = 0; i < counts.length; i++){
+            int c = counts[i];
+            counts[i] = total;
+            total += c;
+        }
+        for (int i = 0; i < res.length; i++){
+            res[counts[hexDigit[i]]] = keys[i];
+            counts[hexDigit[i]]++;
+        }
+        return res;
     }
 
     /**
      *  radixSort() sorts an array of int keys (using all 32 bits
      *  of each key to determine the ordering).
-     *  @param key is an array of ints.  Assume no key is negative.
+     *  @param keys is an array of ints.  Assume no key is negative.
      *  @return an array of type int, having the same length as "keys"
      *    and containing the same keys in sorted order.
      *
@@ -40,13 +57,17 @@ public class Sorts {
      **/
     public static int[] radixSort(int[] keys) {
         // Replace the following line with your solution.
-        return null;
+        int[] res = keys;
+        for (int i = 0; i <= 7; i++){
+            res = countingSort(res, i);
+        }
+        return res;
     }
 
     /**
      *  yell() prints an array of int keys.  Each key is printed in hexadecimal
      *  (base 16).
-     *  @param key is an array of ints.
+     *  @param keys is an array of ints.
      **/
     public static void yell(int[] keys) {
         System.out.print("keys are [ ");
@@ -81,7 +102,6 @@ public class Sorts {
                 Integer.parseInt("3bba7387", 16),
                 Integer.parseInt("52953fdb", 16),
                 Integer.parseInt("40013879", 16) };
-
         yell(keys);
         keys = radixSort(keys);
         yell(keys);
